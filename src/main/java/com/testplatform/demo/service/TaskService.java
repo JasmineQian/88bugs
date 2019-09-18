@@ -1,0 +1,23 @@
+package com.testplatform.demo.service;
+
+import com.testplatform.demo.bean.Task;
+
+import java.util.List;
+
+public interface TaskService {
+
+
+    List<Task> findAll();
+
+    List<Task> findMultiByCondtion(int pageon, int pid, String name, String description);
+
+    int countAll(int pageon, int pid, String name, String description);
+
+    Task findById(int id);
+
+    int create(Task task);
+
+    int update(Task task);
+
+    int deleteByID(int id);
+}
