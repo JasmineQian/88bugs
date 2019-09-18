@@ -6,7 +6,7 @@ mvnw
 mvnw.cmd
 logs/
 target/
-help.md
+ReadMe.md
 
 .project
 .settings
