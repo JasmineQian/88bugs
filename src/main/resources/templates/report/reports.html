@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:white-space="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
-    <title>查看Bug信息</title>
+    <title>查看周报信息</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
     <style type="text/css">
         .wordtoolong {
@@ -33,7 +33,7 @@
 <nav class="navbar navbar-static-top navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Bug管理系统</a>
+            <a class="navbar-brand" href="#">查看周报信息</a>
         </div>
     </div>
 </nav>
@@ -42,30 +42,28 @@
         <div class="center-block">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Bug列表
-                        <a th:href="@{/insert}" input="button"
-                           class="btn btn-danger">新增Bug</a></h3>
+                    <h3 class="panel-title">周报列表信息
+                        <a th:href="@{/addReport}" input="button"
+                           class="btn btn-danger">新增周报</a></h3>
                 </div>
+                <!--
                 <div class="panel-body">
                     <div>
                         <table border="1" class="table table-striped table-bordered table-hover">
-                            <form th:action="@{/bugs}" method="post">
+                            <form th:action="@{/reports}" method="post">
 
                                 <tr>
-                                    <td>项目名称</td>
+                                    <td>员工姓名</td>
                                     <td>
-
-
                                         <select name="pid">
                                             <option value="0" text="请选择..."></option>
                                             <option th:each="p:${projects}" th:value="${p.pid}"
                                                     th:text="${p.pname}"
                                                     th:selected="${pid}==${p.pid}">
-
                                             </option>
                                         </select></td>
 
-                                    <td>测试人员</td>
+                                    <td>历时时间</td>
                                     <td>
                                         <select name="testid">
                                             <option value="0" text="请选择..."></option>
@@ -76,7 +74,7 @@
 
 
                                     </td>
-                                    <td>开发人员</td>
+                                    <td>周报类型</td>
                                     <td>
 
 
@@ -99,6 +97,7 @@
                         </table>
                     </div>
                 </div>
+                -->
                 <div></div>
                 <div></div>
             </div>
@@ -108,34 +107,30 @@
                 <div class="row"></div>
                 <table class="table table-striped table-bordered table-hover">
                     <tr border="1" display="inline-block">
-                        <th>客户名称</th>
-                        <th>测试人员</th>
-                        <th>开发人员</th>
-                        <th>【简单描述】涉及的接口或存储过程名称</th>
-                        <th>Bug状态</th>
+                        <th>员工姓名</th>
+                        <th>周报类型</th>
+                        <th>历时时间</th>
+                        <th>周报事项</th>
+                        <th>完成百分比</th>
                         <th>操作按钮</th>
                     </tr>
-                    <tr th:each="bug:${list}" display="inline-block">
-                        <td th:text="${bug.pname}"></td>
-                        <td th:text="${bug.tester}"></td>
-                        <td th:text="${bug.developer}"></td>
-                        <td>
-                            <div class="wordtoolong" th:text="${bug.description}"></div>
-                        </td>
-                        <td th:text="${bug.bugStatus}"></td>
+                    <tr th:each="item:${list}" display="inline-block">
+                        <td th:text="${item.username}"></td>
+                        <td th:text="${item.typename}"></td>
+                        <td th:text="${item.timeduring}"></td>
+                        <td th:text="${item.taskname}"></td>
+                        <td th:text="${item.numPercent}"></td>
 
-                        <td th:switch="${userflag}">
-                            <a th:case="1"><a th:href="@{/findBug(id=${bug.id})}" input="button"
-                                            class="btn btn-info">查看</a>
-                            <a th:href="@{/delBug(id=${bug.id})}" input="button" class="btn btn-danger"
-                               onclick="alert('删除')">删除</a></a>
-                            <a th:case="0" th:href="@{/findByIdpage(BugListId=${bug.id})}" input="button"
-                                              class="btn btn-info">查看详情</a>
+                        <td>
+                            <a th:href="@{/findReport(id=${item.id})}" input="button"
+                               class="btn btn-info">查看</a>
+                            <a th:href="@{/delReport(id=${item.id})}" input="button" class="btn btn-danger"
+                               onclick="alert('确认删除此周报吗？')">删除</a>
                         </td>
                     </tr>
                 </table>
 
-                <div align="right" th:include="page :: page" url="/bugs"></div>
+                <div align="right" th:include="page :: page" url="/reports"></div>
             </div>
         </div>
     </div>

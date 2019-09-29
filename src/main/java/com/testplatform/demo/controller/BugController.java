@@ -52,7 +52,7 @@ public class BugController {
     @Autowired
     private AnyUserDetailsService anyUserDetailsService;
 
-    @RequestMapping("/listpage")
+    @RequestMapping("/bugs")
     public String findAll(Model model, @RequestParam(value = "pageon", defaultValue = "1") int pageon,
                           @RequestParam(value = "pid", defaultValue = "0") int pid,
                           @RequestParam(value = "crnum", required = false) String crnum,
@@ -143,8 +143,8 @@ public class BugController {
     }
 
 
-    @RequestMapping("/findByIdpage")
-    public String findByIdpage(Model model, @RequestParam("BugListId") int id) {
+    @RequestMapping("/findBug")
+    public String findByIdpage(Model model, @RequestParam("id") int id) {
         logger.info("根据用户ID查询用户信息");
         Bug bug = bugService.findById(id);
         logger.info(String.valueOf(bug));
@@ -155,7 +155,7 @@ public class BugController {
             return "bug/bug_details";
         } else {
             model.addAttribute("message", "查询失败");
-            return "auto";
+            return "bug/bug_auto";
         }
     }
 
@@ -195,8 +195,8 @@ public class BugController {
     }
 
     //@Secured("ROLE_ADMIN")//此方法只允许 ROLE_ADMIN 角色访问
-    @GetMapping("/del")
-    public String del(Model model, @RequestParam("BugListId") int id) {
+    @GetMapping("/delBug")
+    public String del(Model model, @RequestParam("id") int id) {
         int temp = bugService.deleteByID(id);
         logger.info(String.valueOf(temp));
         if (temp > 0) {
@@ -211,8 +211,8 @@ public class BugController {
     }
 
 
-    @RequestMapping("/toUpdate")
-    public String toupdate(Model model, @RequestParam("BugListId") int id, @AuthenticationPrincipal Principal principal) {
+    @RequestMapping("/bug2Update")
+    public String toupdate(Model model, @RequestParam("id") int id, @AuthenticationPrincipal Principal principal) {
         logger.info("转向更新页面,在页面提交之前，并未进行更新");
         List<Project> projects = projectService.findAll();
         List<Employ> testers = employService.findTester();

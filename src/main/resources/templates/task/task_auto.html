@@ -19,7 +19,7 @@
 
 
 <div>
-      <a th:href="@{/findAllTask}"><input type="button" value="还剩3秒，点我立即跳转" id="txt"/></a>
+      <a th:href="@{/tasks}"><input type="button" value="还剩3秒，点我立即跳转" id="txt"/></a>
 </div>
 
 <script>
@@ -35,7 +35,7 @@
                 clearInterval(timer);
                 x.setAttribute("class", "one");
                 x.value = "即将跳转loading...";
-                window.location.href = "/findAllTask";
+                window.location.href = "/tasks";
             }
         }
     }

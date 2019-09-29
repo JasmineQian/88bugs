@@ -18,7 +18,7 @@
   <h1><a th:text="${message}"></a>页面将在3秒后自动跳转到首页</h1>
 
 <div>
-      <a th:href="@{/bugs(pagenum=1)}"><input type="button" value="还剩3秒，点我立即跳转" id="txt"/></a>
+      <a th:href="@{/reports}"><input type="button" value="还剩3秒，点我立即跳转" id="txt"/></a>
 </div>
 
 <script>
@@ -34,7 +34,7 @@
                 clearInterval(timer);
                 x.setAttribute("class", "one");
                 x.value = "即将跳转loading...";
-                window.location.href = "/bugs";
+                window.location.href = "/reports";
             }
         }
     }

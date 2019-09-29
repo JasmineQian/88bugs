@@ -21,8 +21,6 @@ public class BugServiceImpl implements BugService {
     @Value("${dateformat}")
     String dateformat;
 
-
-
     @Autowired
     private JdbcTemplate jdbcTemplate;
 

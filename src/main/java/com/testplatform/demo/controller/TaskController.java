@@ -55,7 +55,7 @@ public class TaskController {
     }
 
 
-    @RequestMapping("/findAllTask")
+    @RequestMapping("/tasks")
     public String findAllTask(Model model, @RequestParam(value="pageon",defaultValue="1")int pageon,
                               @RequestParam(value="pid",required = false,defaultValue="0")int pid,
                               @RequestParam(value="crnum",required = false)String crnum,
