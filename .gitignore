@@ -6,6 +6,8 @@ mvnw
 mvnw.cmd
 logs/
 target/
+.mvn/wrapper
+
 
 
 .project
