@@ -63,18 +63,14 @@
                                             </option>
                                         </select></td>
 
-                                    <td>CR编号</td>
-                                    <td><input maxlength="20" type="text" name="crnum" th:value="${crnum}"
-                                               autocomplete="off"></td>
+
                                     <td>接口或存储过程名称</td>
                                     <td><input maxlength="40" type="text" name="description" th:value="${description}"
                                                autocomplete="off"></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" align="center">请选择条件</td>
-                                    <td colspan="2" align="center"><a><input type="submit" value="点击查询"
+
+                                    <td ><a><input type="submit" value="请选择条件点击查询"
                                                                              class="btn btn-info"></a></td>
-                                    <td colspan="2" align="center"><a>请先点击查询后在进行下载</a><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></a><a
+                                    <td><a>请先点击查询后在进行下载</a><a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></a><a
                                             th:onchange=""
                                             th:href="@{/excelExport(pid=${pid},crnum=${crnum},description=${description})}"
                                             value="" class="btn btn-info"
