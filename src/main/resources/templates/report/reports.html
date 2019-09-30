@@ -57,7 +57,7 @@
                                     员工姓名&nbsp; &nbsp; &nbsp;
                                         <select name="nickname">
                                             <option th:text="请选择..."></option>
-                                            <option th:each="p:${users}" th:value="${p.id}"
+                                            <option th:each="p:${users}" th:value="${p.nickname}"
                                                     th:text="${p.nickname}"
                                                     th:selected="${nickname}==${p.nickname}">
                                             </option>
