@@ -16,7 +16,7 @@
 
   <h1>抱歉出错了</h1>
 <div>
-      <a th:href="@{/listpage(pagenum=1)}"><input type="button" value="还剩3秒，点我立即跳转" id="txt"/></a>
+      <a th:href="@{/index}"><input type="button" value="还剩3秒，点我立即跳转" id="txt"/></a>
 </div>
 
 
@@ -33,7 +33,7 @@
                 clearInterval(timer);
                 x.setAttribute("class", "one");
                 x.value = "即将跳转loading...";
-                window.location.href = "/listpage";
+                window.location.href = "/index";
             }
         }
     }
