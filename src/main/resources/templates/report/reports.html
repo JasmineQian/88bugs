@@ -55,8 +55,8 @@
                                 <tr>
                                     <td>
                                     员工姓名&nbsp; &nbsp; &nbsp;
-                                        <select name="pid">
-                                            <option text="请选择..."></option>
+                                        <select name="nickname">
+                                            <option th:text="请选择..."></option>
                                             <option th:each="p:${users}" th:value="${p.id}"
                                                     th:text="${p.nickname}"
                                                     th:selected="${nickname}==${p.nickname}">
