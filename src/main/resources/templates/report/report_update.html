@@ -4,11 +4,15 @@
 <head>
     <meta charset="UTF-8"/>
     <title>更新周报页面</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
     <link rel="stylesheet" th:href="@{css/bootstrap.min.css}" type="text/css"/>
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script th:src="@{My97DatePicker/calendar.js}"></script>
+    <script th:src="@{My97DatePicker/WdatePicker.js}"></script>
+    <script th:src="@{js/jquery.calendar.js}"></script>
 </head>
 <body>
 <div th:insert="~{header :: nav}"></div>
@@ -33,17 +37,22 @@
                                 <input type="hidden" name="id" th:value="${report.id}"/>
                                 <tr>
                                     <td>员工姓名</td>
-                                    <td><input maxlength="10" type="text" name="username" th:value="${report.username}"></td>
+                                    <td><input maxlength="10" type="text" name="username" th:value="${report.username}">
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>本周时间</td>
-                                    <td><input maxlength="10" type="text" name="timeduring" th:value="${report.timeduring}"></td>
+                                    <td><input maxlength="10" type="text" name="timeduring"
+                                               th:value="${report.timeduring}"></td>
                                 </tr>
                                 <tr>
-                                    <td>本周or下周</td>
-                                    <td><input maxlength="40" type="text" name="typename"
-                                               th:value="${report.typename}"
-                                               style="margin: 0px; width: 400px;"/>
+                                    <td>周报类型</td>
+                                    <td><select name="typename" th:value="${report.typename}">
+                                        <option th:value="本周主要任务" th:text="本周主要任务"
+                                                th:selected="${report.typename}=='本周主要任务'"></option>
+                                        <option th:value="下周工作计划" th:text="下周工作计划"
+                                                th:selected="${report.typename}=='下周工作计划'"></option>
+                                    </select></td>
                                     </td>
                                 </tr>
                                 <tr>
@@ -63,8 +72,9 @@
                                 </tr>
                                 <tr>
                                     <td>上线时间</td>
-                                    <td><textarea rows="1" cols="20" th:text="${report.onlineDate}" name="onlineDate"
-                                                  style="margin: 0px; width: 1000px;"></textarea></td>
+                                    <td><input name="onlineDate" class="Wdate"
+                                               onClick="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})" readonly placeholder="上线时间" th:required="请预估一下上线时间"/>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>内容备注</td>
@@ -73,7 +83,8 @@
                                 </tr>
                                 <tr>
                                     <td><input type="submit" value="确认修改" class="btn btn-info"></td>
-                                    <td><a th:href="@{/reports(pageon=1)}" input="button" class="btn btn-info">回到周报首页</a>
+                                    <td><a th:href="@{/reports(pageon=1)}" input="button"
+                                           class="btn btn-info">回到周报首页</a>
                                     </td>
                             </form>
                         </table>

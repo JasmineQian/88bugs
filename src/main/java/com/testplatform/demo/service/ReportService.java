@@ -9,6 +9,8 @@ public interface ReportService {
 
     List<Report> findAllbyPage(int pageon,String username,String typename);
 
+    List<Report> findReports4me4this(String username,String typename);
+
     int countAll(int pageon,String username,String typename);
 
     Report findById(int id);

@@ -142,7 +142,7 @@ public class BugServiceImpl implements BugService {
         int tester = new Integer(bug.getTester());
         int bugStatus = new Integer(bug.getBugStatus());
 
-        String sql = "INSert qa_buglist(bug_project_id,bug_cr_type_id,bug_cr_num,bug_task_num,qa_type_id,bug_description,bug_rca,bug_solution,qa_assignee_id,qa_tester_id,qa_creationdt,qa_updatedt,bug_status_id)\n" +
+        String sql = "insert qa_buglist(bug_project_id,bug_cr_type_id,bug_cr_num,bug_task_num,qa_type_id,bug_description,bug_rca,bug_solution,qa_assignee_id,qa_tester_id,qa_creationdt,qa_updatedt,bug_status_id)\n" +
                 "values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         return jdbcTemplate.update(sql, pname, crname, crnum, tasknum, oname, description, rca, solution, developer, tester, date, date, bugStatus);
     }

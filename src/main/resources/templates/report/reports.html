@@ -68,7 +68,13 @@
                                         </select></td>
                                     <td>
                                         <a><input type="submit" value="点击查询" class="btn btn-info"></a>
-                                        <a><input type="submit" value="点击下载|暂时实现" class="btn btn-info"></a>
+                                        <a th:onchange=""
+                                           th:href="@{/reportDownLoad(username=${username},typename=${typename})}"
+                                           value="" class="btn btn-info"
+                                           onclick="alert('请先点击查询后在进行下载')">数据导出</a>
+                                        <a th:onchange="" th:href="@{/reportMail(username=${username},typename=${typename})}"
+                                           value="本周邮件提醒"
+                                           class="btn btn-info" onclick="alert('已经发送邮件到QA邮箱')">本周邮件提醒</a>
                                     </td>
                                 </tr>
                             </form>

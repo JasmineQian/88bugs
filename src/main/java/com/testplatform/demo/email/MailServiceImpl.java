@@ -53,5 +53,26 @@ public class MailServiceImpl implements MailService {
         }
     }
 
+    @Override
+    public void sendReportMail(String to,String subject, String content) {
+        MimeMessage message = javaMailSender.createMimeMessage();
+
+        try {
+            //true表示需要创建一个multipart message
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+            helper.setFrom(from);
+            helper.setTo(to);//邮件接收者
+            helper.setBcc(bcc);
+            helper.setSubject(subject);//邮件主题
+            helper.setText(content, true);//邮件内容
+
+            javaMailSender.send(message);
+            logger.info("发送HTML邮件成功！");
+        } catch (MessagingException e) {
+            logger.error("发送HTML邮件时发生异常！", e);
+        }
+
+    }
+
 
 }
