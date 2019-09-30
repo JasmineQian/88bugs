@@ -3,7 +3,7 @@ package com.testplatform.demo.service.impl;
 import com.testplatform.demo.bean.Report;
 import com.testplatform.demo.jdbc.ReportRowMapper;
 import com.testplatform.demo.service.ReportService;
-import com.testplatform.demo.util.getWeek;
+import com.testplatform.demo.util.TimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -77,7 +77,7 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public List<Report> findReports4thisWeek() {
 
-        int thisWeek = getWeek.getWeekNumber(new Date());
+        int thisWeek = TimeUtils.getWeekNumber(new Date());
 
 
         String sql = "select zb_id,zb_username,zb_weekduring,zb_type,zb_desc,zb_relatedurl,zb_numpercent,DATE_FORMAT(zb_onlinetime,'%Y-%m-%d') as zb_onlinetime ,zb_memo,zb_createdt,zb_updatedt\n" +

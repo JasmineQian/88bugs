@@ -4,7 +4,7 @@ import com.testplatform.demo.bean.*;
 import com.testplatform.demo.bean.Report;
 import com.testplatform.demo.security.AnyUserDetailsService;
 import com.testplatform.demo.service.*;
-import com.testplatform.demo.util.getWeek;
+import com.testplatform.demo.util.TimeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,7 +116,7 @@ public class ReportController {
         String userServiceNickname = userEntity.getNickname();
         logger.info("转页面");
 
-        String week = getWeek.getTimeInterval(new Date());
+        String week = TimeUtils.getTimeInterval(new Date());
 
         model.addAttribute("username", userServiceNickname);
         model.addAttribute("week", week);

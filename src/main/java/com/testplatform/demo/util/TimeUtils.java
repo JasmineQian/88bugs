@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class getWeek {
+public class TimeUtils {
 
     @Value("${dateformat}")
     String dateformat;

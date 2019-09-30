@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8"/>
@@ -57,23 +57,20 @@
                                 </tr>
                                 <tr>
                                     <td>本周内容</td>
-                                    <td><textarea rows="3" cols="20" th:text="${report.taskname}" name="taskname"
-                                                  style="margin: 0px; width: 1000px;"></textarea></td>
+                                    <td><input type="text"  name="taskname"  th:value="${report.taskname}" style="margin: 0px; width: 1000px;"></td>
                                 </tr>
                                 <tr>
                                     <td>相关链接</td>
-                                    <td><textarea rows="3" cols="20" th:text="${report.relatedURL}" name="relatedURL"
-                                                  style="margin: 0px; width: 1000px;"></textarea></td>
+                                    <td><input type="text" name="relatedURL"  th:value="${report.relatedURL}" style="margin: 0px; width: 1000px;"></td>
                                 </tr>
                                 <tr>
                                     <td>完成百分比</td>
-                                    <td><textarea rows="1" cols="20" th:text="${report.numPercent}" name="numPercent"
-                                                  style="margin: 0px; width: 1000px;"></textarea></td>
+                                    <td><input type="text"  name="numPercent"  th:value="${report.numPercent}" style="margin: 0px; width: 1000px;"></td>
                                 </tr>
                                 <tr>
                                     <td>上线时间</td>
-                                    <td><input name="onlineDate" class="Wdate"
-                                               onClick="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})" readonly placeholder="上线时间" th:required="请预估一下上线时间"/>
+                                    <td><input name="onlineDate" class="Wdate"  th:value="${report.onlineDate}"
+                                               onClick="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})"  placeholder="上线时间" th:required="请预估一下上线时间"/>
                                     </td>
                                 </tr>
                                 <tr>
