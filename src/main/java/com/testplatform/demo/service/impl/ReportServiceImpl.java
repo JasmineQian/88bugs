@@ -42,9 +42,9 @@ public class ReportServiceImpl implements ReportService {
             queryList.add("%" + typename.trim() + "%");
         }
         String sql2 = sql + " order by 1 desc limit " + start + " , 20";
+        System.out.println(queryList.toString());
 
         List<Report> lists = jdbcTemplate.query(sql2, queryList.toArray(), new ReportRowMapper());
-
         System.out.println(sql2);
         return lists;
 

@@ -55,19 +55,16 @@
                                 <tr>
                                     <td>
                                     员工姓名&nbsp; &nbsp; &nbsp;
-                                        <select name="nickname">
-                                            <option th:text="请选择..."></option>
-                                            <option th:each="p:${users}" th:value="${p.nickname}"
-                                                    th:text="${p.nickname}"
-                                                    th:selected="${nickname}==${p.nickname}">
-                                            </option>
+                                        <select name="username">
+                                            <option th:value=null th:text="请选择..."></option>
+                                            <option th:each="users:${users}" th:value="${users.nickname}" th:text="${users.nickname}" th:selected="${username}==${users.nickname}"></option>
                                         </select></td>
 
                                     <td>周报类型&nbsp; &nbsp; &nbsp;
-                                        <select name="typename">
-                                            <option th:text="请选择..."></option>
-                                            <option th:value="本周主要任务" th:text="本周主要任务"></option>
-                                            <option th:value="下周工作计划" th:text="下周工作计划"></option>
+                                        <select name="typename" >
+                                            <option th:value=null th:text="请选择..." ></option>
+                                            <option th:value="本周主要任务" th:text="本周主要任务" th:selected="${typename}=='本周主要任务'"></option>
+                                            <option th:value="下周工作计划" th:text="下周工作计划" th:selected="${typename}=='下周工作计划'"></option>
                                         </select></td>
                                     <td>
                                         <a><input type="submit" value="点击查询" class="btn btn-info"></a>

@@ -53,18 +53,15 @@ public class ReportController {
 
         String userid =principal.getName();
         UserDetails userDetails =anyUserDetailsService.loadUserByUsername(userid);
-
         List<Object> auth = Arrays.asList(userDetails.getAuthorities());
         System.out.println(auth);
         Collection<? extends GrantedAuthority> auth2=userDetails.getAuthorities();
         System.out.println(auth2);
         System.out.println(userDetails.getUsername());
-
-        List<UserEntity> userEntity = userService.getusers();
+        List<UserEntity> users = userService.getusers();
 
 
         Page page = new Page();
-
         int pagerow = 20;
         List<Report> lists = reportService.findAllbyPage(pageon,username,typename);
         int TotalRows = reportService.countAll(pageon,username,typename);
@@ -86,7 +83,10 @@ public class ReportController {
 
         model.addAttribute("list", lists);
         model.addAttribute("page", page);
-        model.addAttribute("users", userEntity);
+        model.addAttribute("users", users);
+        model.addAttribute("username", username);
+        model.addAttribute("typename", typename);
+        model.addAttribute("pageon", pageon);
         return "report/reports";
     }
 
