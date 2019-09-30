@@ -1,21 +1,13 @@
 package com.testplatform.demo.controller;
 
-
 import com.testplatform.demo.bean.Report;
-import com.testplatform.demo.email.BugNotify;
-import com.testplatform.demo.email.BugNotifyBean;
 import com.testplatform.demo.email.MailService;
 import com.testplatform.demo.service.ReportService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
@@ -26,7 +18,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-@Controller
+@RestController
 public class MailReportConttoller {
 
     // 记录器
@@ -41,9 +33,10 @@ public class MailReportConttoller {
     @Autowired
     private TemplateEngine templateEngine;
 
-    @RequestMapping("/reportMail")
-    public void doMail(HttpServletRequest request, HttpServletResponse response
-            ,@RequestParam(value = "username", required = false) String username,
+    @GetMapping("/reportMail")
+    @ResponseBody
+    public void doMail(HttpServletRequest request, HttpServletResponse response,
+                       @RequestParam(value = "username", required = false) String username,
                        @RequestParam(value = "typename", required = false) String typename,
                        @AuthenticationPrincipal Principal principal) {
 
