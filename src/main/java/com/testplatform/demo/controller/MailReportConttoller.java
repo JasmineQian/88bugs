@@ -43,7 +43,7 @@ public class MailReportConttoller {
         System.out.println("执行了MyStaticTask,时间为:" + new Date(System.currentTimeMillis()));
         logger.error("我要开始发邮件啦,现在的时间为:" + new Date(System.currentTimeMillis()));
 
-        List<Report> lists = reportService.findReports4me4this(username, typename);
+        List<Report> lists = reportService.findReports4thisWeek();
 
         Context context = new Context();
         context.setVariable("lists", lists);

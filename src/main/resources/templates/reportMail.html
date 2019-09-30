@@ -27,20 +27,20 @@
                                 <th>周报类型</th>
                                 <th>历时时间</th>
                                 <th>周报事项</th>
+                                <th>相关链接</th>
                                 <th>完成百分比</th>
                                 <th>预计上线</th>
-                                <th>操作按钮</th>
+                                <th>备注信息</th>
                             </tr>
                             <tr th:each="item:${lists}" display="inline-block">
                                 <td th:text="${item.username}"></td>
                                 <td th:text="${item.typename}"></td>
                                 <td th:text="${item.timeduring}"></td>
                                 <td th:text="${item.taskname}"></td>
+                                <td th:text="${item.relatedURL}"></td>
                                 <td th:text="${item.numPercent}"></td>
                                 <td th:text="${item.onlineDate}"></td>
-
-                                <td>
-                                </td>
+                                <td th:text="${item.memo}"></td>
                             </tr>
                         </table>
                     </div>

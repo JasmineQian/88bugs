@@ -11,6 +11,8 @@ public interface ReportService {
 
     List<Report> findReports4me4this(String username,String typename);
 
+    List<Report> findReports4thisWeek();
+
     int countAll(int pageon,String username,String typename);
 
     Report findById(int id);

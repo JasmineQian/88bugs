@@ -3,6 +3,7 @@ package com.testplatform.demo.service.impl;
 import com.testplatform.demo.bean.Report;
 import com.testplatform.demo.jdbc.ReportRowMapper;
 import com.testplatform.demo.service.ReportService;
+import com.testplatform.demo.util.getWeek;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -65,6 +66,41 @@ public class ReportServiceImpl implements ReportService {
             sql += " and zb_type like ? ";
             queryList.add("%" + typename.trim() + "%");
         }
+        String sql2 = sql + " order by 1 asc";
+        System.out.println(queryList.toString());
+
+        List<Report> lists = jdbcTemplate.query(sql2, queryList.toArray(), new ReportRowMapper());
+        System.out.println(sql2);
+        return lists;
+    }
+
+    @Override
+    public List<Report> findReports4thisWeek() {
+
+        int thisWeek = getWeek.getWeekNumber(new Date());
+
+
+        String sql = "select zb_id,zb_username,zb_weekduring,zb_type,zb_desc,zb_relatedurl,zb_numpercent,DATE_FORMAT(zb_onlinetime,'%Y-%m-%d') as zb_onlinetime ,zb_memo,zb_createdt,zb_updatedt\n" +
+                "from qa_report\n" +
+                "where zb_deleted = 0 ";
+        List<Object> queryList = new ArrayList<Object>();
+
+        if (thisWeek != 0f) {
+            sql += " and WEEK(date_add(zb_createdt,interval 6 day),2) = ? ";
+            queryList.add(thisWeek);
+        }
+
+/****
+        if (username != null) {
+            sql += " and zb_username like ? ";
+            queryList.add("%" + username.trim() + "%");
+        }
+        if (typename != null) {
+            sql += " and zb_type like ? ";
+            queryList.add("%" + typename.trim() + "%");
+        }
+
+        **/
         String sql2 = sql + " order by 1 asc";
         System.out.println(queryList.toString());
 
