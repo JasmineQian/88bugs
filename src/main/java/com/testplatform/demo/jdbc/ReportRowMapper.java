@@ -1,6 +1,6 @@
 package com.testplatform.demo.jdbc;
 
-import com.testplatform.demo.bean2.Report;
+import com.testplatform.demo.bean.Report;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

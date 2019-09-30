@@ -1,15 +1,15 @@
 package com.testplatform.demo.service;
 
-import com.testplatform.demo.bean2.Report;
+import com.testplatform.demo.bean.Report;
 
 import java.util.List;
 
 
 public interface ReportService {
 
-    List<Report> findAllbyPage(int pageon);
+    List<Report> findAllbyPage(int pageon,String username,String typename);
 
-    int countAll(int pageon);
+    int countAll(int pageon,String username,String typename);
 
     Report findById(int id);
 

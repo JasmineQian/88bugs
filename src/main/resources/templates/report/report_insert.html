@@ -5,10 +5,13 @@
     <meta charset="UTF-8"/>
     <title>填写周报页面</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
-    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:src="@{css/bootstrap.min.css}" type="text/css"/>
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script th:src="@{My97DatePicker/calendar.js}"></script>
+    <script th:src="@{My97DatePicker/WdatePicker.js}"></script>
+    <script th:src="@{js/jquery.calendar.js}"></script>
 </head>
 <body>
 <div th:insert="~{header :: nav}"></div>
@@ -32,35 +35,39 @@
                             <form th:action="@{/addReport2}" method="post">
                                 <tr>
                                     <td>员工姓名(*)</td>
-                                    <td><input type="text" name ="username"  th:value="${username}"></td>
+                                    <td><input type="text" name ="username"  th:value="${username}" autocomplete="off"></td>
                                 </tr>
                                 <tr>
                                     <td>时间区间(*)</td>
-                                    <td><input type="text" name ="timeduring" th:value="2019-2-30"></td>
+                                    <td><input type="text" name ="timeduring" th:value="${week}" autocomplete="off"></td>
                                 </tr>
                                 <tr>
                                     <td>周报类型(*)</td>
-                                    <td><input type="text" name = "typename" th:value="fvvfv"></td>
+                                    <td><select name="typename" autocomplete="off">
+                                        <option th:value="本周接手事项" th:text="本周接手事项"></option>
+                                        <option th:value="下周待做事项" th:text="下周待做事项"></option>
+                                    </select></td>
                                 </tr>
                                 <tr>
                                     <td>描述事务</td>
-                                    <td><input type="text" name= "taskname"></td>
+                                    <td><input type="text" name= "taskname" autocomplete="off"></td>
                                 </tr>
                                 <tr>
                                     <td>相关链接</td>
-                                    <td><input type="text" name="relatedURL"></td>
+                                    <td><input type="text" name="relatedURL" autocomplete="off"></td>
                                 </tr>
                                 <tr>
                                     <td>完成百分比</td>
-                                    <td><input type="text" name="numPercent"></td>
+                                    <td><input type="text" name="numPercent" autocomplete="off"></td>
                                 </tr>
                                 <tr>
                                     <td>上线时间</td>
-                                    <td><input type="text" name="onlineDate"></td>
+                                    <td><input name="onlineDate"  class="Wdate"  onClick="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})" readonly/>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>备注信息</td>
-                                    <td><input type="text" name="memo"></td>
+                                    <td><input type="text" name="memo" autocomplete="off"></td>
                                 </tr>
                                 <tr>
                                     <td><input type="submit" value="确认新增" class="btn btn-info"></td>

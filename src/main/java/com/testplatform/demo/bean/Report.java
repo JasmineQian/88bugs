@@ -1,4 +1,4 @@
-package com.testplatform.demo.bean2;
+package com.testplatform.demo.bean;
 
 public class Report {
 

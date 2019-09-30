@@ -1,9 +1,10 @@
 package com.testplatform.demo.controller;
 
 import com.testplatform.demo.bean.*;
-import com.testplatform.demo.bean2.Report;
+import com.testplatform.demo.bean.Report;
 import com.testplatform.demo.security.AnyUserDetailsService;
 import com.testplatform.demo.service.*;
+import com.testplatform.demo.util.getWeek;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
@@ -42,12 +42,13 @@ public class ReportController {
     @Autowired
     private  UserService userService;
 
-
     @Autowired
     private AnyUserDetailsService anyUserDetailsService;
 
     @RequestMapping("/reports")
     public String findAll(Model model, @RequestParam(value = "pageon", defaultValue = "1") int pageon,
+                          @RequestParam(value = "username", required = false) String username,
+                          @RequestParam(value = "typename", required = false) String typename,
                           @AuthenticationPrincipal Principal principal) {
 
         String userid =principal.getName();
@@ -59,12 +60,14 @@ public class ReportController {
         System.out.println(auth2);
         System.out.println(userDetails.getUsername());
 
+        List<UserEntity> userEntity = userService.getusers();
+
 
         Page page = new Page();
 
         int pagerow = 20;
-        List<Report> lists = reportService.findAllbyPage(pageon);
-        int TotalRows = reportService.countAll(pageon);
+        List<Report> lists = reportService.findAllbyPage(pageon,username,typename);
+        int TotalRows = reportService.countAll(pageon,username,typename);
         System.out.println("目前总共的条数是" + TotalRows);
         int pages = 0;
         if (TotalRows % pagerow == 0) {
@@ -83,6 +86,7 @@ public class ReportController {
 
         model.addAttribute("list", lists);
         model.addAttribute("page", page);
+        model.addAttribute("users", userEntity);
         return "report/reports";
     }
 
@@ -111,7 +115,11 @@ public class ReportController {
         UserEntity userEntity =userService.getByUsername(userDetails.getUsername());
         String userServiceNickname = userEntity.getNickname();
         logger.info("转页面");
+
+        String week = getWeek.getTimeInterval(new Date());
+
         model.addAttribute("username", userServiceNickname);
+        model.addAttribute("week", week);
         return "report/report_insert";
     }
 

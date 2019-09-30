@@ -1,6 +1,6 @@
 package com.testplatform.demo.service.impl;
 
-import com.testplatform.demo.bean2.Report;
+import com.testplatform.demo.bean.Report;
 import com.testplatform.demo.jdbc.ReportRowMapper;
 import com.testplatform.demo.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,26 +26,44 @@ public class ReportServiceImpl implements ReportService {
 
 
     @Override
-    public List<Report> findAllbyPage(int pageon) {
+    public List<Report> findAllbyPage(int pageon,String username,String typename) {
         int start = (pageon - 1) * 20;
-        String sql = "select zb_id,zb_username,zb_weekduring,zb_type,zb_desc,zb_relatedurl,zb_numpercent,zb_onlinetime,zb_memo,zb_createdt,zb_updatedt\n" +
+        String sql = "select zb_id,zb_username,zb_weekduring,zb_type,zb_desc,zb_relatedurl,zb_numpercent,DATE_FORMAT(zb_onlinetime,'%Y-%m-%d') as zb_onlinetime ,zb_memo,zb_createdt,zb_updatedt\n" +
                 "from qa_report\n" +
                 "where zb_deleted = 0\n";
         List<Object> queryList = new ArrayList<Object>();
+
+        if (username != null) {
+            sql += " and zb_username like ? ";
+            queryList.add("%" + username.trim() + "%");
+        }
+        if (typename != null) {
+            sql += " and zb_type like ? ";
+            queryList.add("%" + typename.trim() + "%");
+        }
         String sql2 = sql + " order by 1 desc limit " + start + " , 20";
 
         List<Report> lists = jdbcTemplate.query(sql2, queryList.toArray(), new ReportRowMapper());
+
         System.out.println(sql2);
         return lists;
 
     }
 
     @Override
-    public int countAll(int pageon) {
+    public int countAll(int pageon,String username,String typename) {
         String sql = "select zb_id,zb_username,zb_weekduring,zb_type,zb_desc,zb_relatedurl,zb_numpercent,zb_onlinetime,zb_memo,zb_createdt,zb_updatedt\n" +
                 "from qa_report\n" +
                 "where zb_deleted = 0\n";
         List<Object> queryList = new ArrayList<Object>();
+        if (username != null) {
+            sql += " and zb_username like ? ";
+            queryList.add("%" + username.trim() + "%");
+        }
+        if (typename != null) {
+            sql += " and zb_type like ? ";
+            queryList.add("%" + typename.trim() + "%");
+        }
         int count = jdbcTemplate.query(sql, queryList.toArray(), new ReportRowMapper()).size();
         return count;
     }

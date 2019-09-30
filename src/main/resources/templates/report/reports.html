@@ -46,58 +46,38 @@
                         <a th:href="@{/addReport}" input="button"
                            class="btn btn-danger">新增周报</a></h3>
                 </div>
-                <!--
+
                 <div class="panel-body">
                     <div>
                         <table border="1" class="table table-striped table-bordered table-hover">
                             <form th:action="@{/reports}" method="post">
 
                                 <tr>
-                                    <td>员工姓名</td>
                                     <td>
+                                    员工姓名&nbsp; &nbsp; &nbsp;
                                         <select name="pid">
-                                            <option value="0" text="请选择..."></option>
-                                            <option th:each="p:${projects}" th:value="${p.pid}"
-                                                    th:text="${p.pname}"
-                                                    th:selected="${pid}==${p.pid}">
+                                            <option text="请选择..."></option>
+                                            <option th:each="p:${users}" th:value="${p.id}"
+                                                    th:text="${p.nickname}"
+                                                    th:selected="${nickname}==${p.nickname}">
                                             </option>
                                         </select></td>
 
-                                    <td>历时时间</td>
-                                    <td>
-                                        <select name="testid">
-                                            <option value="0" text="请选择..."></option>
-                                            <option th:each="testers:${testers}" th:value="${testers.eid}"
-                                                    th:text="${testers.ename}"
-                                                    th:selected="${testid}==${testers.eid}"></option>
-                                        </select></td>
-
-
-                                    </td>
-                                    <td>周报类型</td>
-                                    <td>
-
-
-                                        <select name="devid">
-                                            <option value="0" text="请选择..."></option>
-                                            <option th:each="developers:${developers}" th:value="${developers.eid}"
-                                                    th:text="${developers.ename}"
-                                                    th:selected="${devid}==${developers.eid}"></option>
+                                    <td>周报类型&nbsp; &nbsp; &nbsp;
+                                        <select name="typename">
+                                            <option th:text="请选择..."></option>
+                                            <option th:value="本周接手事项" th:text="本周接手事项"></option>
+                                            <option th:value="下周待做事项" th:text="下周待做事项"></option>
                                         </select></td>
                                     <td>
-                                        请选择条件
-                                    </td>
-                                    <td>
-
                                         <a><input type="submit" value="点击查询" class="btn btn-info"></a>
-
+                                        <a><input type="submit" value="点击下载|暂时实现" class="btn btn-info"></a>
                                     </td>
                                 </tr>
                             </form>
                         </table>
                     </div>
                 </div>
-                -->
                 <div></div>
                 <div></div>
             </div>
@@ -112,6 +92,7 @@
                         <th>历时时间</th>
                         <th>周报事项</th>
                         <th>完成百分比</th>
+                        <th>预计上线</th>
                         <th>操作按钮</th>
                     </tr>
                     <tr th:each="item:${list}" display="inline-block">
@@ -120,6 +101,7 @@
                         <td th:text="${item.timeduring}"></td>
                         <td th:text="${item.taskname}"></td>
                         <td th:text="${item.numPercent}"></td>
+                        <td th:text="${item.onlineDate}"></td>
 
                         <td>
                             <a th:href="@{/findReport(id=${item.id})}" input="button"

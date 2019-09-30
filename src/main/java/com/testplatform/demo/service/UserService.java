@@ -2,6 +2,8 @@ package com.testplatform.demo.service;
 
 import com.testplatform.demo.bean.UserEntity;
 
+import java.util.List;
+
 public interface UserService {
 
     /**
@@ -17,6 +19,8 @@ public interface UserService {
      * @return UserEntity
      */
     UserEntity getByUsername(String username);
+
+    List<UserEntity> getusers();
 
     int checkUsername(String username);
 

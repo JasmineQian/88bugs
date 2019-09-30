@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Service
 @Primary
@@ -68,6 +69,13 @@ public class UserServiceImpl implements UserService {
         System.out.println(date);
         System.out.println(userEntity);
         return userEntity;
+    }
+
+    @Override
+    public List<UserEntity> getusers() {
+        String sql ="select * from qa_user";
+        List<UserEntity> users = jdbcTemplate.query(sql,new UserRowMapper());
+        return users;
     }
 
     @Override
