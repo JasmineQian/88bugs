@@ -16,8 +16,8 @@
         <div class="center-block">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">本周周报</h3>
-                    <h5 href="https://www.88bugs.com/login">https://www.88bugs.com/login</h5>
+                    <h3 class="panel-title">本周<td th:text="${lists[0].timeduring}"></td>周报</h3>
+                    <h3 href="https://www.88bugs.com/login">https://www.88bugs.com/login</h3>
                 </div>
                 <div class="panel-body">
                     <div>
@@ -25,7 +25,6 @@
                             <tr display="inline-block">
                                 <th>员工姓名</th>
                                 <th>周报类型</th>
-                                <th>历时时间</th>
                                 <th>周报事项</th>
                                 <th>相关链接</th>
                                 <th>完成百分比</th>
@@ -35,7 +34,6 @@
                             <tr th:each="item:${lists}" display="inline-block">
                                 <td th:text="${item.username}"></td>
                                 <td th:text="${item.typename}"></td>
-                                <td th:text="${item.timeduring}"></td>
                                 <td th:text="${item.taskname}"></td>
                                 <td th:text="${item.relatedURL}"></td>
                                 <td th:text="${item.numPercent}"></td>
