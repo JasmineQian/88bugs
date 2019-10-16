@@ -48,7 +48,8 @@ public class MailReportConttoller {
         Context context = new Context();
         context.setVariable("lists", lists);
         String emailContent = templateEngine.process("reportMail", context);
-        mailService.sendReportMail("qianjinyan@moretickets.com", "您好，请注意查收本周周报，谢谢!!", emailContent);
+        //mailService.sendReportMail("qianjinyan@moretickets.com", "您好，请注意查收本周周报，谢谢!!", emailContent);
+        mailService.sendReportMail("qa@moretickets.com", "您好，请注意查收本周周报，谢谢!!", emailContent);
     }
 
 }
